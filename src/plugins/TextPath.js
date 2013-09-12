@@ -334,7 +334,7 @@
      */
 
     Kinetic.Factory.addGetterSetter(Kinetic.TextPath, 'fontSize', 12);
-
+    
     /**
      * set font size
      * @name setFontSize
@@ -350,6 +350,23 @@
      * @memberof Kinetic.TextPath.prototype
      */
 
+    Kinetic.Factory.addGetterSetter(Kinetic.TextPath, 'fontSizeUnit', 'px');
+    
+    /**
+     * set font size unit
+     * @name setFontSizeUnit
+     * @method
+     * @memberof Kinetic.TextPath.prototype
+     * @param {string} fontSizeUnit
+     */
+        
+     /**
+     * get font size unit
+     * @name getFontSizeUnit
+     * @method
+     * @memberof Kinetic.TextPath.prototype
+     */    
+    
     Kinetic.Factory.addGetterSetter(Kinetic.TextPath, 'fontStyle', NORMAL);
 
     /**
