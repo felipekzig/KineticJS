@@ -242,7 +242,7 @@
         },
         drawScene: function(canvas) {
             var layer = this.getLayer(),
-                clip = this.getClipWidth() && this.getClipHeight(),
+                clip = this.getClipWidth() && this.getClipHeight() || this.getClippingPoints().length > 0,
                 children, n, len;
 
             if (!canvas && layer) {
@@ -269,7 +269,7 @@
             }
         },
         drawHit: function() {
-            var hasClip = this.getClipWidth() && this.getClipHeight() && this.nodeType !== 'Stage',
+            var hasClip = this.nodeType !== 'Stage' && (this.getClipWidth() && this.getClipHeight() || this.getClippingPoints().length > 0),
                 n = 0,
                 len = 0,
                 children = [],
@@ -299,6 +299,59 @@
     Kinetic.Util.extend(Kinetic.Container, Kinetic.Node);
 
     // add getters setters
+    Kinetic.Factory.addGetterSetter(Kinetic.Container, 'clippingBorders');
+
+    /**
+     * set clipping borders
+     * @method
+     * @name setClippingBorders
+     * @memberof Kinetic.Container.prototype
+     * @param {Object}
+     * @example
+     * image.setClippingBorders({<br>
+     *   color: '#000', // Can be either an hex value and a literal string containing color's name<br>
+     *   width: 10, // For while, the unit will be in pixels<br>
+     *   style: 'dashed', // Future implementation <br>
+     * });<br><br>
+     *
+     */
+
+    /**
+     * get clipping borders
+     * @name getClippingBorders
+     * @method
+     * @memberof Kinetic.Container.prototype
+     * @return {Object}
+     */    
+    
+    Kinetic.Factory.addGetterSetter(Kinetic.Container, 'clippingPoints', []);
+
+    /**
+     * set clipping points
+     * @method
+     * @name setClippingPoints
+     * @memberof Kinetic.Container.prototype
+     * @param {Array}
+     * @example
+     * // set a clip area that isn't a rect
+     * image.setClippingPoints([<br>
+     *   [x1, y1],<br>
+     *   [x2, y2],<br>
+     *   [x3, y3],<br>
+     *   [xn, yn],<br>
+     * );<br><br>
+     *
+     */
+    
+    /**
+     * get clipping points
+     * @name getClippingPoints
+     * @method
+     * @memberof Kinetic.Container.prototype
+     * @return {Array}
+     */    
+    
+    
     Kinetic.Factory.addBoxGetterSetter(Kinetic.Container, 'clip');
 
     /**
@@ -351,7 +404,7 @@
      * @memberof Kinetic.Container.prototype
      * @param {Number} height
      */
-
+    
     /**
      * get clip
      * @name getClip
