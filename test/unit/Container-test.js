@@ -64,7 +64,7 @@ suite('Container', function() {
     });
 
     // ======================================================
-    test('clipwith clippingBorders', function() {
+    test('clip with clippingBorders', function() {
         var stage = addStage();
         var layer = new Kinetic.Layer({
             clip: [0, 0, stage.getWidth() / 2, 100]
