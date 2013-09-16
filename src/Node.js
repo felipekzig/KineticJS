@@ -813,6 +813,7 @@
         toJSON: function() {
             return JSON.stringify(this.toObject());
         },
+        
         /**
          * get parent container
          * @method
@@ -1213,10 +1214,12 @@
             if (events) {
                 len = events.length;
                 for(i = 0; i < len; i++) {
-                    events[i].handler.call(this, evt);
+                    if ( typeof events[i] !== 'undefined' && typeof events[i].handler === 'function')
+                        events[i].handler.call(this, evt);
                 }
             }
         },
+        
         /*
          * draw both scene and hit graphs.  If the node being drawn is the stage, all of the layers will be cleared and redra
          * @method
