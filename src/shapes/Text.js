@@ -15,13 +15,13 @@
         TOP = 'top',
         MIDDLE = 'middle',
         NORMAL = 'normal',
-        PX_SPACE = 'px ',
+//        PX_SPACE = 'px ',
         SPACE = ' ',
         RIGHT = 'right',
         WORD = 'word',
         CHAR = 'char',
         NONE = 'none',
-        ATTR_CHANGE_LIST = ['fontFamily', 'fontSize', 'fontStyle', 'padding', 'align', 'lineHeight', 'text', 'width', 'height', 'wrap'],
+        ATTR_CHANGE_LIST = ['fontFamily', 'fontSize', 'fontSizeUnit', 'fontStyle', 'padding', 'align', 'lineHeight', 'text', 'width', 'height', 'wrap'],
 
         // cached variables
         attrChangeListLen = ATTR_CHANGE_LIST.length,
@@ -197,7 +197,7 @@
             };
         },
         _getContextFont: function() {
-            return this.getFontStyle() + SPACE + this.getFontSize() + PX_SPACE + this.getFontFamily();
+            return this.getFontStyle() + SPACE + this.getFontSize() + this.getFontSizeUnit() + SPACE + this.getFontFamily();
         },
         _addTextLine: function (line, width, height) {
             return this.textArr.push({text: line, width: width});
@@ -208,6 +208,7 @@
         _setTextData: function () {
              var lines = this.getText().split('\n'),
                  fontSize = +this.getFontSize(),
+                 fontSizeUnit = this.getFontSizeUnit(),
                  textWidth = 0,
                  lineHeightPx = this.getLineHeight() * fontSize,
                  width = this.attrs.width,
@@ -224,7 +225,7 @@
 
              this.textArr = [];
              dummyContext.save();
-             dummyContext.font = this.getFontStyle() + SPACE + fontSize + PX_SPACE + this.getFontFamily();
+             dummyContext.font = this.getFontStyle() + SPACE + fontSize + fontSizeUnit + SPACE + this.getFontFamily();
              for (var i = 0, max = lines.length; i < max; ++i) {
                  var line = lines[i],
                      lineWidth = this._getTextWidth(line);
@@ -345,6 +346,23 @@
      /**
      * get font size
      * @name getFontSize
+     * @method
+     * @memberof Kinetic.Text.prototype
+     */
+    
+    Kinetic.Factory.addGetterSetter(Kinetic.Text, 'fontSizeUnit', 'px');
+    
+    /**
+     * set font size unit
+     * @name setFontSizeUnit
+     * @method
+     * @memberof Kinetic.Text.prototype
+     * @param {string} fontSizeUnit
+     */
+        
+     /**
+     * get font size unit
+     * @name getFontSizeUnit
      * @method
      * @memberof Kinetic.Text.prototype
      */
