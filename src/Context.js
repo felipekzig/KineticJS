@@ -202,7 +202,7 @@
                 this.moveTo(clippingPoints[0][0], clippingPoints[0][1]);
                 
                 for (var i = 1, length = clippingPoints.length; i < length; i++)
-                    this.lineTo(clippingPoints[i][0], clippingPoints[i][1])
+                    this.lineTo(clippingPoints[i][0], clippingPoints[i][1]);
             }
             
             if (borders){
