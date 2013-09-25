@@ -264,9 +264,9 @@
             var children = this.children;
                 len = children.length;
 
-            for(n = 0; n < len; n++) {
-                children[n].drawScene(canvas);
-            }
+            children.each(function(child){
+                child.drawScene(canvas);
+            });
         },
         drawHit: function() {
             var hasClip = this.nodeType !== 'Stage' && (this.getClipWidth() && this.getClipHeight() || this.getClippingPoints().length > 0),
