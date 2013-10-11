@@ -297,7 +297,7 @@
     });
 
     Kinetic.Util.extend(Kinetic.Container, Kinetic.Node);
-
+    
     // add getters setters
     Kinetic.Factory.addGetterSetter(Kinetic.Container, 'clippingBorders');
 
@@ -323,6 +323,29 @@
      * @memberof Kinetic.Container.prototype
      * @return {Object}
      */    
+    
+    Kinetic.Factory.addGetterSetter(Kinetic.Container, 'clipCornersRadius', 0);
+    
+    /**
+     * set clip corners radius
+     * @method
+     * @name setClipCornersRadius
+     * @memberof Kinetic.Container.prototype
+     * @param float
+     * @example
+     * // set a clip area that isn't a rect
+     * image.setClipCornersRadius(50);<br><br>
+     *
+     */
+    
+    /**
+     * get clip corners radius
+     * @name getClipCornersRadius
+     * @method
+     * @memberof Kinetic.Container.prototype
+     * @return {float}
+     */    
+
     
     Kinetic.Factory.addGetterSetter(Kinetic.Container, 'clippingPoints', []);
 
@@ -350,7 +373,7 @@
      * @memberof Kinetic.Container.prototype
      * @return {Array}
      */    
-    
+        
     
     Kinetic.Factory.addBoxGetterSetter(Kinetic.Container, 'clip');
 

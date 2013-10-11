@@ -23,7 +23,70 @@ suite('Container', function() {
         group.add(circle);
         layer.draw();
     });
+    
 
+    // ======================================================
+    test('clip with clippingBorders', function() {
+        var stage = addStage();
+        var layer = new Kinetic.Layer({
+            clip: [0, 0, stage.getWidth() / 2, 100]
+        });
+        layer.setClippingBorders({
+            color: '#0F0',
+            width: 1,
+            style: 'dashed'
+        });
+        
+        var group = new Kinetic.Group();
+        var circle = new Kinetic.Circle({
+            x: stage.getWidth() / 2,
+            y: stage.getHeight() / 2,
+            radius: 70,
+            fill: 'green',
+            stroke: 'black',
+            strokeWidth: 4,
+            name: 'myCircle',
+            draggable: true
+        });
+
+        stage.add(layer);
+        layer.add(group);
+        group.add(circle);
+        layer.draw();
+    });    
+
+    // ======================================================
+    test('clip with rounded corners', function() {
+        var stage = addStage();
+        var layer = new Kinetic.Layer({
+            clip: [10, 10, 150, 150]
+        });
+        var group = new Kinetic.Group();
+        var circle = new Kinetic.Circle({
+            x: 50,
+            y: 50,
+            radius: 70,
+            fill: 'green',
+            stroke: 'black',
+            strokeWidth: 4,
+            name: 'myCircle',
+            draggable: true
+        });
+        
+        layer.setClippingBorders({
+            color: '#0F0',
+            width: 1,
+            style: 'solid'
+        });        
+        
+        layer.setClipCornersRadius(20);
+
+        stage.add(layer);
+        layer.add(group);
+        group.add(circle);
+        layer.draw();
+    });
+    
     // ======================================================
     test('clipping a star (clippingPoints)', function() {
         var stage = addStage();
@@ -60,36 +123,6 @@ suite('Container', function() {
         stage.add(layer);
         layer.add(group);
         group.add(background);
-        layer.draw();
-    });
-
-    // ======================================================
-    test('clip with clippingBorders', function() {
-        var stage = addStage();
-        var layer = new Kinetic.Layer({
-            clip: [0, 0, stage.getWidth() / 2, 100]
-        });
-        layer.setClippingBorders({
-            color: '#0F0',
-            width: 1,
-            style: 'dashed'
-        });
-        
-        var group = new Kinetic.Group();
-        var circle = new Kinetic.Circle({
-            x: stage.getWidth() / 2,
-            y: stage.getHeight() / 2,
-            radius: 70,
-            fill: 'green',
-            stroke: 'black',
-            strokeWidth: 4,
-            name: 'myCircle',
-            draggable: true
-        });
-
-        stage.add(layer);
-        layer.add(group);
-        group.add(circle);
         layer.draw();
     });
 

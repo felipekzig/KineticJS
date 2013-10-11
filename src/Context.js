@@ -189,6 +189,7 @@
                 clipHeight = container.getClipHeight(),
                 clippingPoints = container.getClippingPoints(),
                 borders = container.getClippingBorders(),
+                cornerRadius = container.getClipCornersRadius(),
                 self = this;
 
             this.save();
@@ -196,7 +197,26 @@
             this.beginPath();
             
             if (clippingPoints.length === 0){
-                this.rect(clipX, clipY, clipWidth, clipHeight);
+                
+                if (cornerRadius === 0){
+                    this.rect(clipX, clipY, clipWidth, clipHeight);
+                    
+                } else {
+                    
+                    this.moveTo(clipX + cornerRadius, clipY);
+                    
+                    this.lineTo(clipX + clipWidth - cornerRadius, clipY);
+                    this.arcTo(clipX + clipWidth, clipY, clipX + clipWidth, clipY + cornerRadius, cornerRadius);
+                    
+                    this.lineTo(clipX + clipWidth, clipY + clipHeight - cornerRadius);
+                    this.arcTo(clipX + clipWidth, clipY  + clipHeight, clipX + clipWidth - cornerRadius, clipY + clipHeight, cornerRadius);
+                    
+                    this.lineTo(clipX + cornerRadius, clipY + clipHeight);
+                    this.arcTo(clipX, clipY + clipHeight, clipX, clipY + clipHeight - cornerRadius, cornerRadius);
+                    
+                    this.lineTo(clipX, clipY + cornerRadius);
+                    this.arcTo(clipX, clipY, clipX + cornerRadius, clipY, cornerRadius);                    
+                }
                 
             } else {
                 this.moveTo(clippingPoints[0][0], clippingPoints[0][1]);
@@ -227,6 +247,14 @@
             var a = arguments;
             this._context.arc(a[0], a[1], a[2], a[3], a[4], a[5]);
         },
+        arcTo: function() {
+            var a = arguments;
+            
+            console.log('arcTo');
+            console.log(a);
+            
+            this._context.arcTo(a[0], a[1], a[2], a[3], a[4]);
+        },        
         beginPath: function() {
             this._context.beginPath();
         },
